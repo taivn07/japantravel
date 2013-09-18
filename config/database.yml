@@ -4,9 +4,9 @@ development:
   reconnect: false
   database: japantravel_api_development
   pool: 5
-  username: root
+  username: taimt
   password:
-  host: workspace.dev
+  host: localhost
 
 test:
   adapter: mysql2
@@ -14,9 +14,9 @@ test:
   reconnect: false
   database: japantravel_api_test
   pool: 5
-  username: root
+  username: taimt
   password:
-  host: workspace.dev
+  host: localhost
 
 production:
   adapter: mysql2
