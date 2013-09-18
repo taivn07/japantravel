@@ -1,0 +1,30 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: japantravel_api_development
+  pool: 5
+  username: root
+  password:
+  host: workspace.dev
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: japantravel_api_test
+  pool: 5
+  username: root
+  password:
+  host: workspace.dev
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: japantravel_api_production
+  pool: 5
+  username: root
+  password: bitnami
+  host: localhost
+  socket: /opt/bitnami/mysql/tmp/mysql.sock

@@ -1,0 +1,14 @@
+.rspec
+/.bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/solr
+/vendor/bundle
+/public/uploads
+/public/assets
+.project
+
+*~
+*.swp
+*.DS_Store
