@@ -9,8 +9,8 @@ default: &default
 development:
   <<: *default
   s3:
-    bucket: 'japantravel-development'
-    hostname: 's3-ap-northeast-1.amazonaws.com'
+    bucket: 'japantravel-development2'
+    hostname: 's3-website-ap-northeast-1.amazonaws.com'
 
 test:
   <<: *default
