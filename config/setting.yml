@@ -1,7 +1,7 @@
 default: &default
   aws:
-    access_key_id: 'AKIAJXSGYAY4XFN7SRPQ'
-    secret_access_key: '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'
+    access_key_id: ''
+    secret_access_key: ''
   s3:
     bucket: 'bucket name'
     hostname: 'S3 host name'
