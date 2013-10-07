@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   attr_accessor :current_user
+  respond_to :json
 
   class << self
     #
@@ -54,5 +55,11 @@ class ApplicationController < ActionController::Base
       respond_to_client nil, access_token: 'Authentication required.'
       return false
     end
+  end
+
+  #response template
+  def render_template resource, render_option = nil, status = :success
+    @response = APIResponse.new status, resource
+    render render_option
   end
 end

@@ -49,7 +49,7 @@ PATH
       streamio-ffmpeg
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
@@ -184,6 +184,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-ssh (2.6.1)
     nokogiri (1.5.5)
+    oj (2.1.4)
     options (2.3.0)
       fattr
     orm_adapter (0.4.0)
@@ -196,6 +197,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.3.1)
+    rabl (0.8.6)
+      activesupport (>= 2.3.14)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -306,7 +309,9 @@ DEPENDENCIES
   kaminari
   mime-types
   mysql2
+  oj
   progress_bar
+  rabl
   rack-raw-upload
   rails (= 3.2.8)
   rails_admin!

@@ -51,6 +51,9 @@ class Place < ActiveRecord::Base
       place
     end
 
+    def place_info area_id
+    end
+
     def get_place_comment(id, offset, limit)
       result = []
 

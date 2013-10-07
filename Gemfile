@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
 
@@ -30,6 +30,8 @@ gem 'streamio-ffmpeg'
 gem "carrierwave-video", path: "lib/gems/carrierwave-video"
 gem "mime-types"
 gem "crack"
+gem 'rabl'
+gem 'oj'
 
 group :assets do
   gem 'therubyracer'

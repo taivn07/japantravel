@@ -3,9 +3,9 @@
 class PlacesController < ApplicationController
   def index
     places = Place.with_area_id(params[:area_id]).page(set_offset).per(set_limit).sort_by(&:id)
-    data = { places: places } unless places.empty?
+    object = {places: places}
 
-    respond_to_client data
+    render_template object
   end
 
   def show
