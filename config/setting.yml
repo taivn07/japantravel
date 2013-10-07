@@ -1,26 +1,26 @@
 default: &default
   aws:
-    access_key_id: 'AKIAJXSGYAY4XFN7SRPQ'
-    secret_access_key: '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'
+    access_key_id: 'AKIAIXGULPWFCW53SUFA'
+    secret_access_key: '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'
   s3:
-    bucket: 'bucket name'
-    hostname: 'S3 host name'
+    bucket: 'japantravel-development2'
+    hostname: 's3-website-ap-northeast-1.amazonaws.com'
 
 development:
   <<: *default
   s3:
-    bucket: 'japantravel-development2'
+    bucket: 'japantravel'
     hostname: 's3-website-ap-northeast-1.amazonaws.com'
 
 test:
   <<: *default
   s3:
-    bucket: 'japantravel-test'
-    hostname: 's3-ap-northeast-1.amazonaws.com'
+    bucket: 'japantravel-development2'
+    hostname: 's3-website-ap-northeast-1.amazonaws.com'
 
 
 production:
   <<: *default
   s3:
-    bucket: 'japantravel-production'
-    hostname: 's3-ap-northeast-1.amazonaws.com'
+    bucket: 'apantravel-development2'
+    hostname: 's3-website-ap-northeast-1.amazonaws.com'

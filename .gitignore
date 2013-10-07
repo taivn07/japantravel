@@ -1,6 +1,7 @@
 .rspec
 /.bundle
 /log/*
+/config/*
 /tmp/*
 /db/*.sqlite3
 /solr

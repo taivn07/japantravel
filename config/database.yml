@@ -4,7 +4,7 @@ development:
   reconnect: false
   database: japantravel_api_development
   pool: 5
-  username: taimt
+  username: root
   password:
   host: localhost
 
@@ -14,7 +14,7 @@ test:
   reconnect: false
   database: japantravel_api_test
   pool: 5
-  username: taimt
+  username: root
   password:
   host: localhost
 
