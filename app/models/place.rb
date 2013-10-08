@@ -8,7 +8,7 @@ class Place < ActiveRecord::Base
   belongs_to :large_area
   has_many :comments, :as => :commentable
   has_many :posts
-  
+
   # validates
   validates :name, presence: true
   validates :area_id, presence: true
@@ -86,13 +86,13 @@ class Place < ActiveRecord::Base
         .where("comments.parent_id IS ?", nil)
         .joins("LEFT JOIN posts ON posts.id = comments.commentable_id" + "
         LEFT JOIN users ON users.id = comments.user_id") unless posts.empty?
-        
+
         result += comments.map do |c| 
           c[:post_thumb_url] = post.post_thumb_url
           c
         end unless comments.nil?
       end
-      
+
       comments_sorted = result.select(&:commented_at).sort.reverse + result.reject(&:commented_at) unless result.empty?
 
       {
@@ -116,6 +116,16 @@ class Place < ActiveRecord::Base
       end
 
       { data: data, count: posts.total_count } unless data.empty?
+    end
+
+    def get_place_by_area_id area_id, offset, limit
+      places = Place.with_area_id(area_id).page(offset).per(limit).sort_by(&:id)
+
+      places.map do |place|
+        place[:total_comment] = Comment.where(commentable_type: 'Place').where(commentable_id: place.id).count
+        place[:total_album] = Album.album_by_place(place.id).length
+        place
+      end
     end
   end
 

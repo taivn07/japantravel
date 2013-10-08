@@ -14,7 +14,7 @@ class SpotsController < ApplicationController
 
     data = { spot: spot } unless spot.nil?
 
-    respond_to_client data
+    render_template data
   end
 
   def search

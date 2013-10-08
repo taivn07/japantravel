@@ -2,10 +2,10 @@
 
 class PlacesController < ApplicationController
   def index
-    places = Place.with_area_id(params[:area_id]).page(set_offset).per(set_limit).sort_by(&:id)
-    object = {places: places}
+    places = Place.get_place_by_area_id(params[:area_id], set_offset, set_limit)
+    data = {places: places}
 
-    render_template object
+    render_template data
   end
 
   def show
@@ -31,8 +31,8 @@ class PlacesController < ApplicationController
 
   def search
     results = Place.solr_search(params[:q], set_offset, set_limit)
-    data = { places: results } unless results.empty?
+    data = {places: results} unless results.empty?
 
-    respond_to_client data
+    render_template data
   end
 end

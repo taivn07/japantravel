@@ -20,58 +20,6 @@ class Post < ActiveRecord::Base
   mount_uploader :video, VideoUploader
 
   class << self
-    def get_album_image user_id, place_id, year, limit, offset
-      posts = Post.select("id, image, video, type")
-                  .where(place_id: place_id)
-                  .where(user_id: user_id)
-                  .where("image IS NOT NULL OR video IS NOT NULL")
-                  .where("YEAR(updated_at) = ?", year)
-                  .order("updated_at desc")
-                  .page(offset).per(limit)
-
-      {
-        count: posts.total_count,
-        data: posts.map do |post|
-          {
-            id: post.id,
-            post_url: post.post_url,
-            post_thumb_url: post.post_thumb_url
-          }
-        end
-      } unless posts.empty?
-    end
-
-    def get_album id, limit, offset
-      albums = select([
-        "posts.id, posts.image, posts.video, posts.type",
-        "places.id as place_id",
-        "places.name as place_name",
-        "posts.image as image",
-        "posts.video as video",
-        "YEAR(posts.updated_at) as year"
-      ])
-      .where(user_id: id)
-      .where("posts.video IS NOT NULL OR posts.image IS NOT NULL")
-      .joins(:place)
-      .group(:place_id)
-      .group("YEAR(posts.updated_at)")
-      .order("YEAR(posts.updated_at)")
-      .page(offset)
-      .per(limit)
-
-      {
-        count: albums.total_count,
-        data: albums.map do |album|
-          {
-            place_id: album.place_id,
-            place_name: album.place_name,
-            image: album.post_thumb_url,
-            year: album.year
-          }
-        end
-      } unless albums.empty?
-    end
-
     def get_timeline limit, offset
       events = Event.current_events(Time.now.try(:strftime,("%Y-%m-%d %H:%M:%S")))
       events_arr = events.inject([]) do |result, event|
@@ -148,22 +96,30 @@ class Post < ActiveRecord::Base
 
     end
   end
-    
+
   def is_bookmarked id, user_id
     bookmark = Bookmark.find_by_bookmarkable_id_and_bookmarkable_type_and_user_id(id, "Post", user_id)
     bookmark.nil? ? 0 : 1
   end
-  
+
   def latitude
     self.lat.nil? ? self.spot.try(:lat) : self.lat
   end
-  
+
   def longitude
     self.lng.nil? ? self.spot.try(:lng) : self.lng
   end
-  
+
   def is_image?
     self.image.url == "/images/fallback/default.png" ? false : true
   end
-  
+
+  def total_image
+    Post.where('image IS NOT NULL').count
+  end
+
+  def total_video
+    Post.where('video IS NOT NULL').count
+  end
+
 end

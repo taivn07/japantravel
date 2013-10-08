@@ -70,7 +70,8 @@ class Spot < ActiveRecord::Base
             post_thumb_url: p.post_thumb_url
           }
         },
-        post_count: posts.count
+        post_count: posts.count,
+        bookmark_count: spot.bookmarks.count
       } unless spot.nil?
     end
 

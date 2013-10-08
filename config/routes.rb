@@ -25,10 +25,15 @@ JapanTravelApi::Application.routes.draw do
   resources :posts do
     collection do
       post '/create', to: 'posts#create_normal_post'
-      get '/albums/images', to: "posts#show_album_image"
-      get '/albums', to: 'posts#show_album'
     end
   end
+
+  resources :albums do
+    collection do
+      get '/:place_id/:year', to: "albums#show"
+    end
+  end
+
   get "/timeline", to: "posts#timeline"
   post "/spots/checkins/create", to: "posts#create_checkin"
 
