@@ -23,6 +23,17 @@ class Album < BaseModel
       } unless posts.empty?
     end
 
+    def total_items user_id, place_id, year, is_image = true
+      item = is_image == true ? "image": "video"
+      posts = Post.select("id, image, video, type")
+                  .where(place_id: place_id)
+                  .where(user_id: user_id)
+                  .where(item + " IS NOT NULL")
+                  .where("YEAR(updated_at) = ?", year)
+
+      posts.count
+    end
+
     def all_album id, limit, offset
       albums = Post.select([
         "posts.id, posts.image, posts.video, posts.type",
@@ -48,7 +59,9 @@ class Album < BaseModel
             place_id: album.place_id,
             place_name: album.place_name,
             image: album.post_thumb_url,
-            year: album.year
+            year: album.year,
+            total_image: self.total_items(id, album.place_id, album.year, true),
+            total_video: self.total_items(id, album.place_id, album.year, false)
           }
         end
       } unless albums.empty?

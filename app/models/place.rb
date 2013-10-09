@@ -37,9 +37,15 @@ class Place < ActiveRecord::Base
         paginate  :page => page,  :per_page => per_page
       end
 
-      places = search.results.as_json
+      places = search.results
       places.each do |place|
-        place["image_url"] = place.delete "image"
+        post_comments = 0
+        place.posts.each do |post|
+          post_comments += post.comments.count
+        end
+        place[:total_comment] = place.comments.count + post_comments
+        place[:total_image] = Post.where(place_id: place.id).where("image IS NOT NULL").count
+        place[:total_video] = Post.where(place_id: place.id).where("video IS NOT NULL").count
       end
     end
 
@@ -122,8 +128,13 @@ class Place < ActiveRecord::Base
       places = Place.with_area_id(area_id).page(offset).per(limit).sort_by(&:id)
 
       places.map do |place|
-        place[:total_comment] = Comment.where(commentable_type: 'Place').where(commentable_id: place.id).count
-        place[:total_album] = Album.album_by_place(place.id).length
+        post_comments = 0
+        place.posts.each do |post|
+          post_comments += post.comments.count
+        end
+        place[:total_comment] = place.comments.count + post_comments
+        place[:total_image] = Post.where(place_id: place.id).where("image IS NOT NULL").count
+        place[:total_video] = Post.where(place_id: place.id).where("video IS NOT NULL").count
         place
       end
     end

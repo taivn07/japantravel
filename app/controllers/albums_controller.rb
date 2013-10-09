@@ -7,7 +7,10 @@ class AlbumsController < ApplicationController
     albums = Album.all_album self.current_user.id, set_limit, set_offset
 
     data = {
+      username: self.current_user.name,
+      user_avatar: self.current_user.avatar,
       total_image: self.current_user.posts.where('image IS NOT NULL').count,
+      total_video: self.current_user.posts.where('video IS NOT NULL').count,
       total_bookmark: self.current_user.bookmarks.count,
       album_count: albums[:count],
       albums: albums[:data]

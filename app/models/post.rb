@@ -80,6 +80,7 @@ class Post < ActiveRecord::Base
         posted_at: post.updated_at,
         bookmark_id: post.bookmarks.find_by_user_id(user_id).try(:id),
         bookmarked: post.is_bookmarked(id, user_id),
+        bookmark_count: post.bookmarks.all.length,
         comment_count: post.comments.all.length,
         comments: post.comments.order("updated_at desc").map do |comment|
           {
