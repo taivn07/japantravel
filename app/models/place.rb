@@ -17,7 +17,7 @@ class Place < ActiveRecord::Base
 
   # scope
   scope :with_area_id, lambda{ |area_id|
-    select("id, name, image as image_url")
+    select("id, name, image")
     .where("area_id = ?", area_id)
   }
 
