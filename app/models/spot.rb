@@ -71,7 +71,9 @@ class Spot < ActiveRecord::Base
           }
         },
         total_checkin: posts.count,
-        total_bookmark: spot.bookmarks.count
+        total_bookmark: spot.bookmarks.count,
+        total_image: spot.posts.where("posts.video IS NOT NULL").count,
+        total_video: spot.posts.where("posts.image IS NOT NULL").count
       } unless spot.nil?
     end
 
