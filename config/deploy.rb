@@ -11,16 +11,6 @@ require 'capistrano_colors'
 require "bundler/capistrano"
 set :bundle_flags, "--no-deployment --without test development --binstubs"
 
-# RVMを利用している場合は必要
-require "rvm/capistrano"
-#### RVMで利用するRubyのバージョンを設定(1.9.3を変更) ####
-set :rvm_ruby_string, '2.0.0-p195'
-set :rvm_type, :user
-# rvmのパスは環境によって変更してください
-set :rvm_path, '/home/ubuntu/.rvm'
-set :rvm_bin_path, "#{rvm_path}/bin"
-set :rvm_lib_path, "#{rvm_path}/lib"
-
 # gitリポジトリの設定
 #### git_remote_urlにgitのリモートURLを登録  ####
 set :repository,  "git@github.com:taivn07/japantravel.git"
