@@ -59,4 +59,5 @@ group :development, :test do
   gem 'capistrano_colors'
   gem 'capistrano_rsync_with_remote_cache'
   gem 'rvm-capistrano'
+  gem 'capistrano-unicorn', :require => false
 end

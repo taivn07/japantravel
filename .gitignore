@@ -1,8 +1,9 @@
 .rspec
 /.bundle
 /log/*
-/config/*
 /tmp/*
+/config/initializers/*
+/config/setting.yml
 /db/*.sqlite3
 /solr
 /vendor/bundle
