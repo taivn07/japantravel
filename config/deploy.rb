@@ -9,7 +9,7 @@ require 'capistrano_colors'
 
 # cap deploy時に自動で bundle installを実行
 require "bundler/capistrano"
-set :bundle_flags, "--no-deployment --without test development"
+set :bundle_flags, "--no-deployment --without test development --binstubs"
 
 # RVMを利用している場合は必要
 require "rvm/capistrano"
@@ -55,6 +55,10 @@ default_run_options[:pty] = true
 set :normalize_asset_timestamps, false
 # 過去のデプロイしたフォルダを履歴として保持する数
 set :keep_releases, 5
+
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 # assets:precompile
 namespace :assets do
