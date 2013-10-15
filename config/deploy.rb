@@ -47,7 +47,7 @@ set :normalize_asset_timestamps, false
 set :keep_releases, 5
 
 set :default_environment, {
-  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/versions/2.0.0-p195/bin:$HOME/.rbenv/versions/2.0.0-p195/lib/ruby/gems/2.0.0/gems:$PATH"
 }
 
 # assets:precompile
