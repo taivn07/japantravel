@@ -25,7 +25,7 @@ production: &production
   database: japantravel
   pool: 5
   username: japantravel
-  password: 'test1234'
+  password: 'test123456'
   host: jp.cfgy5dh8e3cw.us-west-2.rds.amazonaws.com
   port: 3306
 

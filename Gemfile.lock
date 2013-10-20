@@ -308,7 +308,7 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   bcrypt-ruby (~> 3.0.0)
-  capistrano
+  capistrano (~> 2.15)
   capistrano-ext
   capistrano-unicorn
   capistrano_colors

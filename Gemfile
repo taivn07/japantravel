@@ -54,7 +54,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-pow'
   gem 'guard-spork'
-  gem 'capistrano'
+  gem 'capistrano', '~> 2.15'
   gem 'capistrano-ext'
   gem 'capistrano_colors'
   gem 'capistrano_rsync_with_remote_cache'
