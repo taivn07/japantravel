@@ -1,0 +1,34 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: japantravel_api_development
+  pool: 5
+  username: root
+  password:
+  host: localhost
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: japantravel_api_test
+  pool: 5
+  username: root
+  password:
+  host: localhost
+
+production: &production
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: japantravel
+  pool: 5
+  username: japantravel
+  password: 'test1234'
+  host: jp.cfgy5dh8e3cw.us-west-2.rds.amazonaws.com
+  port: 3306
+
+staging:
+  <<: *production
+  database: japantravel_stg

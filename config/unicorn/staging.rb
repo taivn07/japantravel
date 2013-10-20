@@ -1,6 +1,6 @@
 # Set your full path to application.
-app_path = "/home/ubuntu/apps/japantravel/current"
-shared_path = "/home/ubuntu/apps/japantravel/shared"
+app_path = "/home/ubuntu/apps/japantravel_stg/current"
+shared_path = "/home/ubuntu/apps/japantravel_stg/shared"
 
 # Set unicorn options
 worker_processes 1
