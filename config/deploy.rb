@@ -1,7 +1,7 @@
 require "capistrano/ext/multistage"
 require 'capistrano-unicorn'
 
-set :application, "deploy_test"
+set :application, "japantravel"
 set :repository,  "git@github.com:taivn07/japantravel.git"
 
 #set environment list
