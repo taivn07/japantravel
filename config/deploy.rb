@@ -69,6 +69,13 @@ namespace :solr do
       bundle exec rake sunspot:solr:start RAILS_ENV=#{rails_env}
     CMD
   end
+
+  task :reindex do
+    run <<-CMD
+      cd #{current_path};
+      bundle exec rake sunspot:solr:reindex RAILS_ENV=#{rails_env}
+    CMD
+  end
 end
 
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
