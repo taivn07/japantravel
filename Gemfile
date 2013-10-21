@@ -32,6 +32,7 @@ gem "mime-types"
 gem "crack"
 gem 'rabl'
 gem 'oj'
+gem "fb_graph"
 
 group :assets do
   gem 'therubyracer'
