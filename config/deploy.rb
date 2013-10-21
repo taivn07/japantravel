@@ -62,6 +62,15 @@ namespace :db do
   end
 end
 
+namespace :solr do
+  task :start do
+    run <<-CMD
+      cd #{current_path};
+      bundle exec rake sunspot:solr:start RAILS_ENV=#{rails_env}
+    CMD
+  end
+end
+
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
