@@ -48,7 +48,7 @@ namespace :deploy do
     task :bundle_install do
       run <<-CMD
         cd #{current_path};
-        bundle install RAILS_ENV=#{rails_env}
+        bundle install
       CMD
     end
 end
