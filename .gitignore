@@ -2,7 +2,6 @@
 /.bundle
 /log/*
 /tmp/*
-/config/initializers/*
 /db/*.sqlite3
 /solr
 /vendor/bundle
