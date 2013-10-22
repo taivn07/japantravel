@@ -17,7 +17,7 @@ class FbSharesController < ApplicationController
 
   def fb_share post_id
     post = Post.find_by_id post_id
-    status = {message: post.description, link: "baristride.co.jp"}
+    status = {message: post.description, link: "google.co.jp"}
 
     status[:picture] = post.image.thumb ? "#{post.image.thumb}" : "#{post.video.thumb}"
 
