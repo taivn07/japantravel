@@ -57,6 +57,28 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def exception_handler e
+    render_error e
+  end
+
+  def render_error e
+    @response = APIResponse.new :error
+    @response.message = e.message
+
+    Rails.logger.error e.backtrace[0..9].join "\n"
+    render template: 'templates/error', status: 500
+  end
+
+  def render_fail resource = nil
+    @response = APIResponse.new 'fail', resource
+    render template: 'templates/fail'
+  end
+
+  def render_success
+    @response = APIResponse.new 'success', nil
+    render template: 'templates/success'
+  end
+
   #response template
   def render_template resource, render_option = nil, status = :success
     @response = APIResponse.new status, resource

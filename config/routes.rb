@@ -24,7 +24,8 @@ JapanTravelApi::Application.routes.draw do
 
   resources :posts do
     collection do
-      post '/create', to: 'posts#create_normal_post'
+      post "/create", to: "posts#create_normal_post"
+      get  "/share/:id", to:  "posts#fb_share"
     end
   end
 
@@ -49,6 +50,8 @@ JapanTravelApi::Application.routes.draw do
       post 'delete', to: 'users#delete'
     end
   end
+
+  resources :fb_shares, only: [:create]
 
   mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
   devise_for :admins

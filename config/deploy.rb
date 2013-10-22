@@ -44,6 +44,13 @@ namespace :deploy do
         mkdir -p #{shared_path}/sockets
       CMD
     end
+
+    task :bundle_install do
+      run <<-CMD
+        cd #{current_path};
+        bundle install RAILS_ENV=#{rails_env}
+      CMD
+    end
 end
 
 namespace :db do

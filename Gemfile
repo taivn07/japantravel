@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.13'
 
 gem 'mysql2'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
@@ -32,7 +32,7 @@ gem "mime-types"
 gem "crack"
 gem 'rabl'
 gem 'oj'
-gem "fb_graph"
+gem "fb_graph", "~> 2.7.8"
 
 group :assets do
   gem 'therubyracer'

@@ -36,11 +36,24 @@ class PostsController < ApplicationController
           description: post.description,
         }
       })
+
+      if params[:post_to_facebook] == "1"
+        share = FbShare.new({
+          user_id: self.current_user.try(:id),
+          post_id: post.id
+        })
+
+        if share.save
+          fb_share post.id
+        else
+          render_fail share
+        end
+      end
     else
       respond_to_client nil, post.errors
     end
   end
-  
+
   def create_checkin
     checkin = Checkin.new(
       spot_id: params[:spot_id],
@@ -52,9 +65,9 @@ class PostsController < ApplicationController
     )
 
     if checkin.save
-      respond_to_client({ 
-        checkin: 
-        { 
+      respond_to_client({
+        checkin:
+        {
           id: checkin.id,
           spot_id: checkin.spot_id,
           place_id: checkin.place_id,
@@ -67,6 +80,13 @@ class PostsController < ApplicationController
           created_at: checkin.updated_at
         }
       })
+      if params[:post_to_facebook] == "1"
+        begin
+          facebook_checkin checkin.place_id, checkin.description
+        rescue => e
+          logger.error "チェックイン出来ませんでした。エラー:#{e}"
+        end
+      end
     else
       respond_to_client nil, checkin.errors
     end
@@ -95,9 +115,32 @@ class PostsController < ApplicationController
   end
 
   def show
-    posts = Post.get_post_detail params[:id], params[:user_id]
-    data = { posts: posts } unless posts.blank?
+    post = Post.get_post_detail params[:id], params[:user_id]
+    post[:shared] = 0
+    shared = FbShare.find_by_post_id_and_user_id post[:id], params[:user_id] unless post.blank?
+    post[:shared] = 1 if shared
+    data = { posts: post } unless post.blank?
 
     respond_to_client data
+  end
+
+  def fb_share post_id
+    post = Post.find_by_id post_id
+    status = {message: post.description, link: "google.co.jp"}
+    status[:picture] = post.image.thumb ? "#{post.image.thumb}" : "#{post.video.thumb}"
+
+    me = ::FbGraph::User.me(self.current_user.facebook_access_token)
+    me.feed!(status)
+  end
+
+  def facebook_checkin place_id, description
+    me = ::FbGraph::User.me(self.current_user.facebook_access_token)
+    place = Place.find_by_id place_id
+    me.feed!(
+      message: description,
+      picture: place.image,
+      description: place.introduction,
+      link: "google.co.jp"
+    )
   end
 end
