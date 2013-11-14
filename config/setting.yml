@@ -1,7 +1,7 @@
 default: &default
   aws:
-    access_key_id: 'xxx'
-    secret_access_key: 'xxx'
+    access_key_id: 'AKIAIXGULPWFCW53SUFA'
+    secret_access_key: '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'
   s3:
     bucket: 'japantravel-development2'
     hostname: 's3-website-ap-northeast-1.amazonaws.com'

@@ -29,11 +29,8 @@ JapanTravelApi::Application.routes.draw do
     end
   end
 
-  resources :albums do
-    collection do
-      get '/:place_id/:year', to: "albums#show"
-    end
-  end
+  resources :albums, only: [:index]
+  get '/albums/:place_id/:year', to: "albums#show"
 
   get "/timeline", to: "posts#timeline"
   post "/spots/checkins/create", to: "posts#create_checkin"

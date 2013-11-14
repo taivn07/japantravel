@@ -5,6 +5,6 @@ class AreasController < ApplicationController
     areas = Area.all.sort_by(&:id)
     data = { areas: areas } unless areas.empty?
 
-    respond_to_client data 
+    respond_to_client data
   end
 end

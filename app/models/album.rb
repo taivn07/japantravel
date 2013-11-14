@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Album < BaseModel
   attr_accessor :place_id, :place_name, :post_thumb_url, :year
 

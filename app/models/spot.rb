@@ -52,7 +52,7 @@ class Spot < ActiveRecord::Base
 
     def get_spot_info id, user_id
       spot = Spot.find_by_id(id)
-      posts = spot.posts.where("posts.image IS NOT NULL OR posts.video IS NOT NULL").sort_by(&:updated_at).reverse
+      posts = spot.posts.where("posts.image IS NOT NULL OR posts.video IS NOT NULL").sort_by(&:updated_at).reverse unless spot.nil?
 
       {
         id: spot.id,

@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe SpotsController do
+  render_views
+
   describe "GET 'index'" do
     let!(:place) { FactoryGirl.create(:place) }
     let!(:spot1) { FactoryGirl.create(:spot, name: "東京タワー", place: place) }
@@ -44,25 +46,24 @@ describe SpotsController do
       let!(:post1) { FactoryGirl.create(:normal_post, spot: spot) }
       let!(:post2) { FactoryGirl.create(:checkin, spot: spot) }
 
-      before { get :show, user_id: user.id, id: spot.id }
+      before { json_get :show, user_id: user.id, id: spot.id }
 
-      it { response.should be_jsend_success }
-      it { response.jsend_data[:spot][:id].should eql spot.id }
-      it { response.jsend_data[:spot][:posts].length.should eql 2 }
+      it { @json_response["data"]["spot"]["id"].should eql spot.id }
+      it { @json_response["data"]["spot"]["posts"].length.should eql 2 }
     end
 
     context "postがない場合" do
-      before { get :show, user_id: user.id, id: spot.id }
+      before { json_get :show, user_id: user.id, id: spot.id }
 
-      it { response.should be_jsend_success }
-      it { response.jsend_data[:spot][:posts].should be_empty }
+      it { @json_response["status"].should eql "success" }
+      it { @json_response["data"]["spot"]["posts"].should be_empty }
     end
 
     context "user_idがない場合" do
-      before { get :show, id: spot.id }
+      before { json_get :show, id: spot.id }
 
-      it { response.should be_jsend_success }
-      it { response.jsend_data[:spot][:bookmarked].should eql 0 }
+      it { @json_response["status"].should eql "success" }
+      it { @json_response["data"]["spot"]["bookmarked"].should eql 0 }
     end
   end
 

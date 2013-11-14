@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe PlacesController do
+  render_views
+
   describe "GET 'index'" do
     let!(:place1) { FactoryGirl.create :place, area_id: 1 }
     let!(:place2) { FactoryGirl.create :place, area_id: 1, name: "江ノ島" }
@@ -10,10 +12,10 @@ describe PlacesController do
 
     context "area_idある場合" do
       context "データがある場合" do
-        before { get :index, area_id: 1 }
-        it { response.should be_jsend_success }
-        it { response.jsend_data[:places].length.should eql 2 }
-        it { response.jsend_data[:places][1][:name].should eql "江ノ島" }
+        before { json_get :index, area_id: 1 }
+        it { @json_response["status"].should eql "success" }
+        it { @json_response["data"]["places"].length.should eql 2 }
+        it { @json_response["data"]["places"][1]["name"].should eql "江ノ島" }
       end
 
       context "paginateする場合" do
@@ -25,26 +27,26 @@ describe PlacesController do
           }
         end
 
-        before { get :index, valid_params }
+        before { json_get :index, valid_params }
 
-        it { response.should be_jsend_success }
-        it { response.jsend_data[:places].length.should eql 1 }
-        it { response.jsend_data[:places][0][:name].should eql "渋谷" }
+        it { @json_response["status"].should eql "success" }
+        it { @json_response["data"]["places"].length.should eql 1 }
+        it { @json_response["data"]["places"][0]["name"].should eql "渋谷" }
       end
 
       context "データがない場合" do
-        before { get :index, area_id: 3 }
+        before { json_get :index, area_id: 3 }
 
-        it { response.should be_jsend_success }
-        it { response.jsend_data.should be_nil }
+        it { @json_response["status"].should eql "success" }
+        it { @json_response["data"]["places"].length.should eql 0 }
       end
     end
 
     context "area_idがない場合" do
-        before { get :index }
+        before { json_get :index }
 
-        it { response.should be_jsend_success }
-        it { response.jsend_data.should be_nil }
+        it { @json_response["status"].should eql "success" }
+        it { @json_response["data"]["places"].length.should eql 0 }
     end
   end
 
@@ -88,16 +90,16 @@ describe PlacesController do
 
     context "検索キーワードがある場合" do
       context '結果がある場合' do
-        before { get :search, q: "東京" }
+        before { json_get :search, q: "東京" }
 
         pending "no test"
       end
 
       context '結果がない場合' do
-        before { get :search, q: "浜松" }
+        before { json_get :search, q: "浜松" }
 
-        it { response.should be_jsend_success }
-        it { response.jsend_data.should be_nil }
+        it { @json_response["status"].should eql "success" }
+        it { @json_response["data"].should be_nil }
       end
     end
 

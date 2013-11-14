@@ -24,3 +24,8 @@ end
 Spork.each_run do
   DatabaseCleaner.clean
 end
+
+def json_get(action, params = nil)
+  get action, params
+  @json_response = JSON.parse(response.body)
+end

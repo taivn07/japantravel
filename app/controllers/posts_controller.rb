@@ -92,31 +92,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def show_album_image
-    images = Post.get_album_image self.current_user.id, params[:place_id], params[:year], set_limit, set_offset
-
-    data = {
-      post_count: images[:count],
-      posts: images[:data]
-    } unless images.blank?
-
-    respond_to_client data
-  end
-
-  def show_album
-    albums = Post.get_album self.current_user.id, set_limit, set_offset
-
-    data = {
-      album_count: albums[:count],
-      albums: albums[:data]
-    } unless albums.blank?
-
-    respond_to_client data
-  end
-
   def show
     post = Post.get_post_detail params[:id], params[:user_id]
-    post[:shared] = 0
+    post[:shared] = 0 unless post.nil?
     shared = FbShare.find_by_post_id_and_user_id post[:id], params[:user_id] unless post.blank?
     post[:shared] = 1 if shared
     data = { posts: post } unless post.blank?
