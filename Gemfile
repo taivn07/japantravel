@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'sqlite3'
+
 # gem 'mysql2'
 # gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'devise'
