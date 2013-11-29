@@ -61,6 +61,7 @@ module JapanTravelApi
     
     # config.autoload_paths += %W(#{config.root}/vendor/gems/carrierwave-video)
     # config.autoload_paths += Dir["#{config.root}/vendor/gems/carrierwave-video/**/"]
+    config.assets.initialize_on_precompile = false
 
   end
 end
