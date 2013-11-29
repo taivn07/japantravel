@@ -126,6 +126,7 @@ GEM
     options (2.3.0)
       fattr
     orm_adapter (0.4.0)
+    pg (0.17.0)
     polyglot (0.3.3)
     progress_bar (0.4.0)
       highline (~> 1.6.1)
@@ -243,6 +244,7 @@ DEPENDENCIES
   kaminari
   mime-types
   oj
+  pg
   progress_bar
   rabl
   rack-raw-upload
