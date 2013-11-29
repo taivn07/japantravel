@@ -50,6 +50,6 @@ JapanTravelApi::Application.routes.draw do
 
   resources :fb_shares, only: [:create]
 
-  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
-  devise_for :admins
+  # mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
+  # devise_for :admins
 end
