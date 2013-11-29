@@ -2,14 +2,14 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem 'mysql2'
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+# gem 'mysql2'
+# gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'devise'
 gem 'settingslogic'
 gem 'kaminari'
-gem 'fog', '~> 1.3.1'
-gem 'carrierwave'
-gem 'rmagick'
+# gem 'fog', '~> 1.3.1'
+# gem 'carrierwave'
+# gem 'rmagick'
 gem 'rack-raw-upload'
 gem 'ancestry'
 gem 'rufus-scheduler', require: nil
@@ -19,15 +19,15 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn'
 gem 'therubyracer', :platforms => :ruby
 gem 'jsend-rails', '~> 1.0.0'
-gem 'sunspot', :git => "git://github.com/sunspot/sunspot.git"
-gem 'sunspot_cell', :git => 'git://github.com/zheileman/sunspot_cell.git'
-gem "sunspot_rails", :git => 'git://github.com/outoftime/sunspot.git'
-gem "sunspot_solr", :git => 'git://github.com/sunspot/sunspot.git'
+# gem 'sunspot', :git => "git://github.com/sunspot/sunspot.git"
+# gem 'sunspot_cell', :git => 'git://github.com/zheileman/sunspot_cell.git'
+# gem "sunspot_rails", :git => 'git://github.com/outoftime/sunspot.git'
+# gem "sunspot_solr", :git => 'git://github.com/sunspot/sunspot.git'
 gem 'progress_bar'
 gem 'settingslogic'
 gem 'uuidtools'
-gem 'streamio-ffmpeg'
-gem "carrierwave-video", path: "lib/gems/carrierwave-video"
+# gem 'streamio-ffmpeg'
+# gem "carrierwave-video", path: "lib/gems/carrierwave-video"
 gem "mime-types"
 gem "crack"
 gem 'rabl'
