@@ -2,8 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem 'sqlite3'
-
 # gem 'mysql2'
 # gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'devise'
@@ -62,4 +60,8 @@ group :development, :test do
   gem 'capistrano_colors'
   gem 'capistrano_rsync_with_remote_cache'
   gem 'capistrano-unicorn', :require => false
+end
+
+group :production do
+  gem 'pg'
 end
